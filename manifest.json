@@ -1,0 +1,17 @@
+{
+  "name" : "GyaoDirectURL",
+  "version" : "0.1",
+  "description": "Display the URL of movie.",
+  "icons" : { "128": "icon.png" },
+  "content_scripts": [
+    {
+      "matches": ["http://gyao.yahoo.co.jp/player/*",
+                  "http://gyao.yahoo.co.jp/p/*"],
+      "js": ["direct.js"]
+    }],
+  "permissions": [
+    "http://player.gyao.yahoo.co.jp/wmp/makeAsxSl.php"
+  ],
+   "background_page": "background.html"
+}
+
