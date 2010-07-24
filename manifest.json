@@ -3,6 +3,7 @@
   "version" : "0.1",
   "description": "Display the URL of movie.",
   "icons" : { "128": "icon.png" },
+  "options_page": "help.html",
   "content_scripts": [
     {
       "matches": ["http://gyao.yahoo.co.jp/player/*",
