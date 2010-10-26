@@ -29,10 +29,12 @@ function requestASX(src, place) {
       "&band=1500";
     var t="http://player.gyao.yahoo.co.jp/wmp/makeAsxSl.php?"+param;
     var connection = chrome.extension.connect();
+
     connection.onMessage.addListener(
-      function(info, con){
-        makeResponseHandler(place, info);
+      function(msg){
+        makeResponseHandler(place, msg);
       });
+
     connection.postMessage({href:t, referer:document.location.href, vid: vid});
   } else if(src.match(/\/p\/(\d+)\/(v\d+)/)) {
     mapDetail(insertDirectURI);

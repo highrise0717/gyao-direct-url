@@ -1,16 +1,18 @@
-chrome.self.onConnect.addListener(
-  function(port,name) {
+
+chrome.extension.onConnect.addListener(
+  function(port) {
     port.onMessage.addListener(
-      function(info,con) {
+      function(msg) {
         var req=new XMLHttpRequest();
         var ts=Math.floor((new Date).getTime()/1000);
-        var tok=MD5_hexhash('gyao'+info.vid+Math.floor(ts/300)*300);
-        req.open('POST', info.href+'&tok='+tok, true);
+        var tok=MD5_hexhash('gyao'+msg.vid+Math.floor(ts/300)*300);
+        req.open('POST', msg.href+'&tok='+tok, true);
         req.onreadystatechange=function() {
           if (req.readyState==1)
-            req.setRequestHeader('Referer', info.referer);
-          else if (req.readyState==4)
-            con.postMessage(parseXML(req.responseText));
+            req.setRequestHeader('Referer', msg.referer);
+          else if (req.readyState==4) {
+            port.postMessage(parseXML(req.responseText));
+          }
         };
         req.setRequestHeader('Content-type',
                              'application/x-www-form-urlencoded');
@@ -23,4 +25,3 @@ function parseXML(text) {
   var dom=parser.parseFromString(text,"application/xml");
   return dom.getElementsByTagName("Ref")[1].getAttribute("HREF");
 }
-
