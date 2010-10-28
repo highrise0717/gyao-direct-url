@@ -8,7 +8,7 @@ function makeResponseHandler(place, href) {
 function mapDetail(p) {
   var d=document.getElementById("dev_p_colist_l").getElementsByTagName("p");
   for(var i=0; i<d.length; i++) {
-    if(d[i].getAttribute("class")=="ttl") p(d[i]);
+    if(d[i].getAttribute("class")=="left2") p(d[i]);
   }
 }
 
