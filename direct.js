@@ -1,7 +1,10 @@
 
 function makeResponseHandler(place, href) {
   var p=document.createElement("div");
-  p.innerHTML=href;
+  var l=document.createElement("a");
+  l.setAttribute("href", href);
+  l.innerText=href;
+  p.appendChild(l);
   place.insertBefore(p, place.firstChild);
 };
 
