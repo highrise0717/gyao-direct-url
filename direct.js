@@ -1,4 +1,12 @@
 
+function timestamp() {
+  var ts_path = '//img[contains(@src,"http://ybx.yahoo.co.jp/clear.gif?")][1]/@src';
+  var evaluater = document.evaluate(ts_path, document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+  var item = evaluater.snapshotItem();
+  var matchobj = item.textContent.match(/&r=(\d*)$/);
+  return parseInt(matchobj[1]);
+}
+
 function makeResponseHandler(place, href) {
   var p=document.createElement("div");
   var l=document.createElement("a");
@@ -38,7 +46,12 @@ function requestASX(src, place) {
         makeResponseHandler(place, msg);
       });
 
-    connection.postMessage({href:t, referer:document.location.href, vid: vid});
+    connection.postMessage(
+      { href:t,
+        referer:document.location.href,
+        vid: vid,
+        timestamp: timestamp()
+      });
   } else if(src.match(/\/p\/(\d+)\/(v\d+)/)) {
     mapDetail(insertDirectURI);
   }

@@ -4,8 +4,7 @@ chrome.extension.onConnect.addListener(
     port.onMessage.addListener(
       function(msg) {
         var req=new XMLHttpRequest();
-        var ts=Math.floor((new Date).getTime()/1000);
-        var tok=MD5_hexhash('gyao'+msg.vid+Math.floor(ts/300)*300);
+        var tok=MD5_hexhash('gyao'+msg.vid+Math.floor(msg.timestamp/300)*300);
         req.open('POST', msg.href+'&tok='+tok, true);
         req.onreadystatechange=function() {
           if (req.readyState==1)
