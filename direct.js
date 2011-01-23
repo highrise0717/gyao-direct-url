@@ -1,11 +1,11 @@
 
 function timestamp() {
-  var ts_path = '//img[contains(@src,"http://ybx.yahoo.co.jp/clear.gif?")][1]/@src';
-  var evaluater = document.evaluate(ts_path, document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-  var item = evaluater.snapshotItem();
-  var matchobj = item.textContent.match(/&r=(\d*)$/);
-  return parseInt(matchobj[1]);
-}
+  var ts_path = '//comment()';
+  var evaluater = document.evaluate(ts_path, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+  var item = evaluater.snapshotItem(evaluater.snapshotLength-1);
+  var matchobj = item.textContent.match(/chunked (.+) JST(.+)$/);
+  return (new Date(matchobj[1]+matchobj[2])).getTime()/1000;
+  }
 
 function makeResponseHandler(place, href) {
   var p=document.createElement("div");
