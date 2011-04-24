@@ -24,8 +24,11 @@ function mapDetail(p) {
 }
 
 function insertDirectURI(n) {
-  var uri=n.getElementsByTagName("a")[0].getAttribute("href");
-  requestASX(uri, n.lastChild);
+  var l=n.getElementsByTagName("a");
+  if(l.length != 0) {
+    var uri=l[0].getAttribute("href");
+    requestASX(uri, n.lastChild);
+  }
 }
 
 function requestASX(src, place) {
