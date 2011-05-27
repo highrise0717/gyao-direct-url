@@ -40,7 +40,7 @@ function requestASX(src, place) {
       "cp_id="+m[1]+
       "&program_id="+m[2]+
       "&video_id="+m[3]+
-      "&band=1500";
+      "&band=0";
     var t="http://player.gyao.yahoo.co.jp/wmp/makeAsxSl.php?"+param;
     var connection = chrome.extension.connect();
 
