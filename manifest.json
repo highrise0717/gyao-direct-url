@@ -1,13 +1,14 @@
 {
   "name" : "GyaoDirectURL",
-  "version" : "0.8",
+  "version" : "0.9",
   "description": "Display the URL of movie.",
   "icons" : { "128": "icon.png" },
   "options_page": "help.html",
   "content_scripts": [
     {
       "matches": ["http://gyao.yahoo.co.jp/player/*",
-                  "http://gyao.yahoo.co.jp/p/*"],
+                  "http://gyao.yahoo.co.jp/p/*",
+                  "http://gyao.yahoo.co.jp/my/pl/list/*m=detail"],
       "js": ["direct.js"]
     }],
   "permissions": [

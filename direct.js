@@ -5,7 +5,7 @@ function timestamp() {
   var item = evaluater.snapshotItem(evaluater.snapshotLength-1);
   var matchobj = item.textContent.match(/chunked (.+) JST(.+)$/);
   return (new Date(matchobj[1]+matchobj[2])).getTime()/1000;
-  }
+}
 
 function makeResponseHandler(place, href) {
   var p=document.createElement("div");
@@ -13,28 +13,24 @@ function makeResponseHandler(place, href) {
   l.setAttribute("href", href);
   l.innerText=href;
   p.appendChild(l);
-  place.insertBefore(p, place.firstChild);
-};
-
-function mapDetail(p) {
-  var d=document.getElementById("dev_p_colist_l").getElementsByTagName("p");
-  for(var i=0; i<d.length; i++) {
-    if(d[i].getAttribute("class")=="left2") p(d[i]);
-  }
+  place.parentNode.insertBefore(p, place.nextSibling);
 }
 
-function insertDirectURI(n) {
-  var l=n.getElementsByTagName("a");
-  if(l.length != 0) {
-    var uri=l[0].getAttribute("href");
-    requestASX(uri, n.lastChild);
-  }
+function mapDetail(groupID, entryClass) {
+  var d=document.getElementById(groupID).getElementsByTagName("p");
+  for(var i=0; i<d.length; i++) 
+    if(d[i].getAttribute("class")==entryClass) insertURI(d[i]);
+}
+
+function insertURI(entry) {
+  var l=entry.getElementsByTagName("a");
+  if(l.length != 0) requestASX(l[0].getAttribute("href"), entry);
 }
 
 function requestASX(src, place) {
   var m=src.match(/\/player\/(\d+)\/(v\d+)\/(v\d+)/);
 
-  if(m){
+  if(m) {
     var vid=m[1]+':'+m[2]+':'+m[3];
     var param=
       "cp_id="+m[1]+
@@ -43,6 +39,8 @@ function requestASX(src, place) {
       "&band=0";
     var t="http://player.gyao.yahoo.co.jp/wmp/makeAsxSl.php?"+param;
     var connection = chrome.extension.connect();
+
+    if (null == place) place = document.getElementById("main_cnt").firstChild;
 
     connection.onMessage.addListener(
       function(msg){
@@ -56,8 +54,10 @@ function requestASX(src, place) {
         timestamp: timestamp()
       });
   } else if(src.match(/\/p\/(\d+)\/(v\d+)/)) {
-    mapDetail(insertDirectURI);
+    mapDetail("dev_p_colist_l", "left2");
+  } else if(src.match(/\/my\/pl\/list\//)) {
+    mapDetail("leftcnt", "mov_title");
   }
 }
 
-requestASX(document.location.href, document.getElementById("main_cnt"));
+requestASX(document.location.href, null);
