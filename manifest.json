@@ -1,6 +1,6 @@
 {
   "name" : "GyaoDirectURL",
-  "version" : "0.9",
+  "version" : "1.0",
   "description": "Display the URL of movie.",
   "icons" : { "128": "icon.png" },
   "options_page": "help.html",

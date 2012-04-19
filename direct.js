@@ -54,6 +54,8 @@ function requestASX(src, place) {
         timestamp: timestamp()
       });
   } else if(src.match(/\/p\/(\d+)\/(v\d+)/)) {
+    document.getElementById("dev_p_colist_l").style.display='block';
+    document.getElementById("dev_p_colist_s").style.display='none';
     mapDetail("dev_p_colist_l", "left2");
   } else if(src.match(/\/my\/pl\/list\//)) {
     mapDetail("leftcnt", "mov_title");
