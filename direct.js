@@ -32,12 +32,10 @@ function requestASX(src, place) {
 
   if(m) {
     var vid=m[1]+':'+m[2]+':'+m[3];
-    var param=
-      "cp_id="+m[1]+
-      "&program_id="+m[2]+
-      "&video_id="+m[3]+
-      "&band=0";
-    var t="http://player.gyao.yahoo.co.jp/wmp/makeAsxSl.php?"+param;
+    var param= "device_type=1100&delivery_type=3&service_id=gy&"
+    + "html_location="+src
+    +"&appid=ff_rbJCxg67.bRk_lk7CbWFjhorGVKjvFsRgiLDHW4PE.vN6zxDW6KyRr1Zw3rI-";
+    var t="https://gw.gyao.yahooapis.jp/v1/rtmp/"+vid+"/multiVideo?"+param;
     var connection = chrome.extension.connect();
 
     if (null == place) place = document.getElementById("main_cnt").firstChild;

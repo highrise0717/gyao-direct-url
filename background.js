@@ -4,8 +4,7 @@ chrome.extension.onConnect.addListener(
     port.onMessage.addListener(
       function(msg) {
         var req=new XMLHttpRequest();
-        var tok=MD5_hexhash('gyao'+msg.vid+Math.floor(msg.timestamp/300)*300);
-        req.open('POST', msg.href+'&tok='+tok, true);
+        req.open('POST', msg.href, true);
         req.onreadystatechange=function() {
           if (req.readyState==1)
             req.setRequestHeader('Referer', msg.referer);
@@ -22,5 +21,5 @@ chrome.extension.onConnect.addListener(
 function parseXML(text) {
   var parser=new DOMParser();
   var dom=parser.parseFromString(text,"application/xml");
-  return dom.getElementsByTagName("Ref")[1].getAttribute("HREF");
+  return dom.getElementsByTagName("Url")[0].textContent;
 }

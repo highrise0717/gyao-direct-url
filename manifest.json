@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name" : "GyaoDirectURL",
-  "version" : "1.1",
+  "version" : "1.2",
   "description": "Display the URL of movie.",
   "icons" : { "128": "icon.png" },
   "options_page": "help.html",
@@ -13,7 +13,7 @@
       "js": ["direct.js"]
     }],
   "permissions": [
-    "http://player.gyao.yahoo.co.jp/wmp/makeAsxSl.php"
+    "https://gw.gyao.yahooapis.jp/v1/rtmp/*"
   ],
   "background": {
     "scripts": ["md5.js", "background.js"]
