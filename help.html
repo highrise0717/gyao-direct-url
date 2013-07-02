@@ -7,56 +7,37 @@
         word-break: break-all;
         word-wrap: break-word;
       }
-      p.t10 {
-        border-bottom: 1px solid #333;
-        color: red;
-        font-weight: bold;
-        padding: 0px 0px 4px;
-        display: inline;
-      }
-      p.t11 {
-        line-height: 16px;
-        padding: 10px 0px 0px;
-
-      }
-      div.jadge1 {
-        background: white;
-        display: block;
-        padding: 20px;
-       }
-      blockquote.gyao-emu {
-        background-color: black;
-        padding: 10px;
-        width: 40em;
-      }
     </style>
 </head>
   <body>
 
 <h2>目的</h2>
 <p><a href="http://gyao.yahoo.co.jp/">Gyao</a> は人気のある動画配信サイトのひとつです。</p>
-<p>しかし、このサイトは Google Chrome に対応していません。 Google Chrome でアクセスすると通常は以下のような文面が表示されるのみです。</p>
-<blockquote class="gyao-emu">
-<div class="jadge1"><p class="t10">お使いのブラウザでは、映像を視聴できません。</p><p class="t11">GyaO!の映像を見るために必要な環境については「<a href="http://gyao.yahoo.co.jp/guide/spec/">視聴環境の確認</a>」をご覧ください。<br />お使いの環境の判定と解決方法については、利用環境判定ページをご覧ください。</p></div>
-</blockquote>
-<p>この拡張は Gyao の動画を視聴することを支援するものです。 </p>
+<p>しかし、配信期間と自分の予定が合わなかったり、貧弱な回線の場所でカクカクしながら再生されたりといった事情で動画を手元に置いておきたいといったこともあるでしょう。</p>
+<p>この拡張はそうした場合に Gyao の動画を保存することを支援するものです。</p>
 
 <h2>使い方</h2>
 <p>実際の画面で説明します。</p>
-<p>まず個別の動画ページのタイトルの上に、動画へダイレクトに繋げる URL が表示されるようになります。</p>
-<img src="sample1.jpg" alt="movie page sample." />
-<p>シリーズ物であれば、一覧ページでの各タイトルの下にも表示されます。 (表示モードを「詳細表示モード」にしているときだけです。 「画像とタイトル」に設定されているときは表示されません。) </p>
-<img src="sample2.jpg" alt="movie page sample." />
-<p>表示された URL を Windows Media Pleyer 等の mms プロトコルに対応したプレイヤに入力すればそのまま視聴することが出来ます。</p>
-<p>Windows では単にクリックすれば Windows Media Player が起動するでしょう。</p>
+<p>まず個別の動画ページのタイトルの上に、動画を rtmpdump でダウンロードするコマンドが表示されるようになります。</p>
+<img src="sample.jpg" alt="movie page sample." />
+<p>表示されたコマンドをコンソールに入力すればそのままダウンロードすることが出来ます。</p>
+<p>もちろん、 rtmpdump のインストールは事前に行っておいて下さい。</p>
 
 <h2>注意点</h2>
 <ul>
-<li>Gyao の動画データは DRM で保護されています。 DRM 付きの WMV 形式動画を再生するプレイヤはおそらく Windows にしかありません。 また、ダウンローダで手元に保存していても一定期間後には再生できなくなります。</li>
-<li>この拡張の古いバージョンではローカルの時計の時刻があっていることが必要でした。 現在のバージョンではサーバからの返答を元に時刻を取得しているので、時刻設定の影響を受けません。</li>
 <li>この拡張は作成時点における Gyao のサイト構成を独自に調査して作成した非公式なものです。 Gyao がサイトに変更を加える等した場合にはこの拡張は機能しなくなる可能性があり得ます。</li>
 <li>この拡張は Gyao やその運営企業各位とは全く関係のない非公式なものです。 この拡張について Gyao に問い合わせることはしないで下さい。</li>
 <li>あなたがこの拡張を入手することで得たのはこの拡張それのみであり、保証やサポートを一切含みません。</li>
+<li>この拡張は後述のライセンス (いわゆる BSD スタイルライセンス) に基く再頒布を認めています。 ライセンスの範囲内でのこの拡張の再頒布には作者の承認を得る必要はありません。</li>
 </ul>
+<h2>ライセンス</h2>
+<p>Copyright (c) 2013 SAITO Atsushi</p>
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+<ol>
+<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+<li>Neither the name of the authors nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+</ol>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
   </body>
 </html>
