@@ -7,11 +7,11 @@ function timestamp() {
   return (new Date(matchobj[1]+matchobj[2])).getTime()/1000;
 }
 
-function makeResponseHandler(place, href) {
+function makeResponseHandler(place, href, command) {
   var p=document.createElement("div");
   var l=document.createElement("a");
   l.setAttribute("href", href);
-  l.innerText=href;
+  l.innerText=command;
   p.appendChild(l);
   place.parentNode.insertBefore(p, place.nextSibling);
 }
@@ -42,7 +42,16 @@ function requestASX(src, place) {
 
     connection.onMessage.addListener(
       function(msg){
-        makeResponseHandler(place, msg);
+        var mt = msg.match(/\/([^\/]+\/[^\/]+)\/,(.+)$/);
+        var command = 'rtmpdump --swfVfy "'
+              +document.getElementById('GyaoPlayer').data+'" '
+              +'-r "'+msg+'" '
+              +'-o '
+              +'"'+document.getElementsByClassName('devTitle')[0].textContent+'.f4v" '
+              +'-a "'+mt[1]+'" '
+              +'-y "'+mt[2]+'" '
+              +'-p "'+document.location.href+'"';
+        makeResponseHandler(place, msg, command);
       });
 
     connection.postMessage(
