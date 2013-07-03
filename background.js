@@ -9,7 +9,7 @@ chrome.extension.onConnect.addListener(
           if (req.readyState==1)
             req.setRequestHeader('Referer', msg.referer);
           else if (req.readyState==4) {
-            port.postMessage(parseXML(req.responseText));
+            port.postMessage(req.responseText);
           }
         };
         req.setRequestHeader('Content-type',
@@ -17,9 +17,3 @@ chrome.extension.onConnect.addListener(
         req.send();
       });
   });
-
-function parseXML(text) {
-  var parser=new DOMParser();
-  var dom=parser.parseFromString(text,"application/xml");
-  return dom.getElementsByTagName("Url")[0].textContent;
-}
